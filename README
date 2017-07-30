@@ -1,0 +1,57 @@
+# Heimdall Web App
+
+This is the web interface to interact with Heimdall and visualize detections.
+
+It should work with Django 1.6 and probably some higher, but needs confirmation due to ever changing API
+
+It is released under the AGPL-3.0: https://www.gnu.org/licenses/agpl-3.0.en.html
+
+# Installation hints
+
+The current state of the GUI requires running through Apache because of file serving capabilities.
+
+Apache could be substituted with a different decent HTTP server but I'm not providing details about that yet.
+We may need to switch as Apache is not the most light-weight webserver, so nginx, lighttpd or hiawatha may provide to be better.
+
+Anyway, for apache you need some mods: xsendfile and wsgi:
+
+sudo apt-get install libapache2-mod-wsgi libapache2-mod-xsendfile
+
+Here is a sample configuration file for Apache
+
+
+# Make sure Apache listens on port 8000
+Listen 8000
+
+<VirtualHost *:8000>
+	ServerName local.heimdall-sensor.com
+
+	DocumentRoot /var/www
+
+    # Allow sending files from SHM: images and movies
+	XSendFile On
+	XSendFilePath /dev/shm/heimdall/
+
+    # Serve Django static files directly
+	Alias /static /PATH/TO/WEBAPP/heimdall/static
+	<Directory /PATH/To/WEBAPP/heimdall_webapp/heimdall/static>
+		Options -Indexes +FollowSymLinks -MultiViews
+		Require all granted
+		AllowOVerride All	
+	</Directory>
+
+    # Set up WSGI
+	WSGIDaemonProcess local.heimdall-sensor.com processes=1 threads=1 user=heimdall group=heimdall display-name=%{GROUP}
+	#WSGIDaemonProcess local.heimdall-sensor.com processes=1 threads=1 user=heimdall group=heimdall display-name=%{GROUP} python-path=/PATH/TO/WEBAPP/heimdall_webapp:/opt/ros/indigo/lib/python2.7/dist-packages
+	WSGIProcessGroup local.heimdall-sensor.com
+	WSGIScriptAlias / /PATH/TO/WEBAPP/heimdall_webapp/heimdall_webapp/wsgi.py
+
+	<Directory /PATH/TO/WEBAPP/heimdall_webapp/heimdall_webapp>
+		<Files wsgi.py>
+			Require all granted
+		</Files>
+	</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/heimdall_error.log
+	CustomLog ${APACHE_LOG_DIR}/heimdall_access.log combined
+</VirtualHost>

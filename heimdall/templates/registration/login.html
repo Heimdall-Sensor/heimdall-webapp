@@ -1,0 +1,57 @@
+<!doctype html>
+{% load staticfiles %}
+<html lang="nl">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="{% static 'heimdall/css/heimdall.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'heimdall/vendor/bootstrap/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'heimdall/vendor/bootstrap/css/bootstrap-theme.min.css' %}" />
+        <title>Heimdall - Authenticatie</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Heimdall</a>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row"><br /></div>
+            <div class="row">
+                <div class="col-xs-12" style="text-align: center;">
+                    <h1>Authenticatie</h1>
+                    {% block content %}
+                    {% if form.errors %}
+                    <p>Uw gebruikersnaam en wachtwoord zijn niet juist. Probeer het opnieuw.</p>
+                    {% endif %}
+
+                    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        {% csrf_token %}
+                        <table style="width: 350px; margin: 0 auto;">
+                            <tr>
+                                <td>{{ form.username.label_tag }}</td>
+                                <td>{{ form.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form.password.label_tag }}</td>
+                                <td>{{ form.password }}</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <button class="btn btn-default" type="submit" value="login">Inloggen</button>
+                    </form>
+                    {% endblock %}
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
+        </div>
+        <!-- Javascripts -->
+        <script src="{% static 'heimdall/vendor/jquery/js/jquery.js' %}"></script>
+        <script src="{% static 'heimdall/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+</html>
+    </body>
+</html>

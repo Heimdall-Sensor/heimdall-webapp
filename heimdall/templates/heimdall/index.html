@@ -1,0 +1,81 @@
+<!doctype html>
+{% load staticfiles %}
+{% load i18n %}
+<html lang="nl">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="{% static 'heimdall/css/heimdall.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'heimdall/vendor/bootstrap/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'heimdall/vendor/bootstrap/css/bootstrap-theme.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'heimdall/css/bootstrap-dropdown-checkbox.css' %}" />
+        <title>{% trans "Heimdall - The Guardian Angel" %}</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">{% trans "Show buttons" %}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">{% trans "Heimdall" %}</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <div id="toolbar" role="toolbar">
+                    <div class="btn-group btn-group" role="group">
+                        <button type="button" class="btn btn-primary" id="calibration-btn" title="{% trans "Calibrate" %}">
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="floordetect-btn" title="{% trans "Detect floor" %}">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="detect-btn" alt="{% trans "Detect" %}">
+                            <i class="glyphicon glyphicon-play"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="shutdown-btn" alt="{% trans "Shutdown" %}">
+                            <i class="glyphicon glyphicon-off"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="source-btn" alt="Beeld" title="{% trans "Image type" %}">
+                            <i class="glyphicon glyphicon-certificate"></i>
+                        </button>
+                    </div>
+                    <div id="refresh-rate" class="btn-group btn-group" role="group" data-toggle="buttons">
+                        <label class="btn btn-primary" ><input type="radio" value="0.25">0.25Hz</label>
+                        <label class="btn btn-primary" ><input type="radio" value="2">2Hz</label>
+                        <label class="btn btn-primary" ><input type="radio" value="4">4Hz</label>
+                    </div>
+                    <div class="btn-group btn-group" role="group">
+                        <button type="button" class="btn btn-primary" id="movie-btn" alt="{% trans "Clips" %}" title="{% trans "Watch clips" %}">
+                            <i class="glyphicon glyphicon-film"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="mask-btn" alt="{% trans "Location" %}" title="{% trans "Define location" %}">
+                            <i class="glyphicon glyphicon-record"></i>
+                        </button>
+                        <div id="mask_list"></div>
+                    </div>
+                    <br style="clear:both;" />
+                </div>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div id="view" class="col-xs-12">
+                    <img src="/camera" data-refresh="1" id="camera" />
+                </div>
+            </div>
+        </div>
+        <div id="movie_list">
+        </div>
+        <!-- Javascripts -->
+        <script src="{% static 'heimdall/vendor/jquery/js/jquery.js' %}"></script>
+        <script src="{% static 'heimdall/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'heimdall/js/heimdall.js' %}"></script>
+        <script src="{% static 'heimdall/js/jquery.bootstrap-growl.min.js' %}"></script>
+        <script src="{% static 'heimdall/js/raphael-min.js' %}"></script>
+        <script src="{% static 'heimdall/js/bootstrap-dropdown-checkbox.min.js' %}"></script>
+    </body>
+</html>

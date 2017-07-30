@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-13 00:46+0200\n"
+"PO-Revision-Date: 2015-10-13 00:52+0100\n"
+"Last-Translator: Egbert van der Wal <ewal@heimdall-sensor.org>\n"
+"Language-Team: Heimdall <info@heimdall-sensor.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: heimdall/templates/heimdall/index.html:12
+msgid "Heimdall - The Guardian Angel"
+msgstr "Heimdall -The Guardian Angel"
+
+#: heimdall/templates/heimdall/index.html:19
+msgid "Show buttons"
+msgstr "Show buttons"
+
+#: heimdall/templates/heimdall/index.html:24
+msgid "Heimdall"
+msgstr "Heimdall"
+
+#: heimdall/templates/heimdall/index.html:29
+msgid "Calibrate"
+msgstr "Calibrate"
+
+#: heimdall/templates/heimdall/index.html:32
+msgid "Detect"
+msgstr "Detect"
+
+#: heimdall/templates/heimdall/index.html:35
+msgid "Image type"
+msgstr "Image type"
+
+#: heimdall/templates/heimdall/index.html:45
+msgid "Location"
+msgstr "Location"
+
+#: heimdall/templates/heimdall/index.html:45
+msgid "Define location"
+msgstr "Define location"
